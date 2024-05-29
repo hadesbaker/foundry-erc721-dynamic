@@ -17,27 +17,47 @@ contract MoodNft is ERC721 {
 
     /// STORAGE VARIABLES ///
     uint256 private s_tokenCounter;
-    string private s_sadSvgImageUri;
-    string private s_happySvgImageUri;
+    string private s_sadSvgUri;
+    string private s_happySvgUri;
 
     /// MAPPINGS ///
-    mapping(uint256 => Mood) private s_tokenIdToState;
+    mapping(uint256 => Mood) private s_tokenIdToMood;
+
+    /// EVENTS ///
+    event CreatedNFT(uint256 indexed tokenId);
 
     /// CONSTRUCTOR ///
     constructor(
-        string memory sadSvgImageUri,
-        string memory happySvgImageUri
+        string memory sadSvgUri,
+        string memory happySvgUri
     ) ERC721("MoodNft", "MOOD") {
         s_tokenCounter = 0;
-        s_sadSvgImageUri = sadSvgImageUri;
-        s_happySvgImageUri = happySvgImageUri;
+        s_sadSvgUri = sadSvgUri;
+        s_happySvgUri = happySvgUri;
     }
 
     /// FUNCTIONS ///
     function mintNft() public {
-        _safeMint(msg.sender, s_tokenCounter);
-        s_tokenIdToState[s_tokenCounter] = Mood.HAPPY;
-        s_tokenCounter++;
+        uint256 tokenCounter = s_tokenCounter;
+        _safeMint(msg.sender, tokenCounter);
+        s_tokenCounter = s_tokenCounter + 1;
+        emit CreatedNFT(tokenCounter);
+    }
+
+    function flipMood(uint256 tokenId) public {
+        if (!_isApprovedOrOwner(msg.sender, tokenId)) {
+            revert MoodNft__CantFlipMoodIfNotOwner();
+        }
+
+        if (s_tokenIdToMood[tokenId] == Mood.HAPPY) {
+            s_tokenIdToMood[tokenId] == Mood.SAD;
+        } else {
+            s_tokenIdToMood[tokenId] == Mood.HAPPY;
+        }
+    }
+
+    function _baseURI() internal pure override returns (string memory) {
+        return "data:application/json;base64,";
     }
 
     function tokenURI(
@@ -46,22 +66,20 @@ contract MoodNft is ERC721 {
         if (ownerOf(tokenId) == address(0)) {
             revert ERC721Metadata__URI_QueryFor_NonExistentToken();
         }
+        string memory imageURI = s_happySvgUri;
 
-        string memory imageURI = s_happySvgImageUri;
-
-        if (s_tokenIdToState[tokenId] == Mood.SAD) {
-            imageURI = s_sadSvgImageUri;
+        if (s_tokenIdToMood[tokenId] == Mood.SAD) {
+            imageURI = s_sadSvgUri;
         }
-
         return
             string(
                 abi.encodePacked(
                     _baseURI(),
                     Base64.encode(
-                        bytes(
+                        bytes( // bytes casting actually unnecessary as 'abi.encodePacked()' returns a bytes
                             abi.encodePacked(
                                 '{"name":"',
-                                name(),
+                                name(), // You can add whatever name here
                                 '", "description":"An NFT that reflects the mood of the owner, 100% on Chain!", ',
                                 '"attributes": [{"trait_type": "moodiness", "value": 100}], "image":"',
                                 imageURI,
