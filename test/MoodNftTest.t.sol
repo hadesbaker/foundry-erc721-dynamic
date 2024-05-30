@@ -10,7 +10,7 @@ import {StdCheats} from "forge-std/StdCheats.sol";
 
 contract MoodNftTest is StdCheats, Test {
     string constant NFT_NAME = "Mood NFT";
-    string constant NFT_SYMBOL = "MN";
+    string constant NFT_SYMBOL = "MOOD";
     MoodNft public moodNft;
     DeployMoodNft public deployer;
     address public deployerAddress;

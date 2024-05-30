@@ -31,7 +31,7 @@ contract MoodNft is ERC721, Ownable {
     constructor(
         string memory sadSvgUri,
         string memory happySvgUri
-    ) ERC721("Mood NFT", "MOOD") Ownable() {
+    ) ERC721("Mood NFT", "MOOD") Ownable(msg.sender) {
         s_tokenCounter = 0;
         s_sadSvgUri = sadSvgUri;
         s_happySvgUri = happySvgUri;
