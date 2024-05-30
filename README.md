@@ -56,7 +56,7 @@ make anvil
 This will default to your local node. You need to have it running in another terminal in order for it to deploy.
 
 ```
-make deploy
+make deployMood
 ```
 
 ## Deploy - Other Network
@@ -100,7 +100,19 @@ Head over to [faucets.chain.link](https://faucets.chain.link/) and get some tesn
 2. Deploy
 
 ```
-make deploySvg ARGS="--network sepolia"
+make deployMood ARGS="--network sepolia"
+```
+
+3. Mint
+
+```
+make mintMoodNft ARGS='--network sepolia'
+```
+
+4. Flip (if desired)
+
+```
+make flipMoodNft ARGS='--network sepolia'
 ```
 
 ## Base64
