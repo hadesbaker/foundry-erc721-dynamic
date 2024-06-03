@@ -1,5 +1,12 @@
 # Foundry NFT
 
+by Taki Baker Alyasri
+
+- GitHub: [hadesbaker](https://www.github.com/hadesbaker)
+- Twitter: [hadesbaker](https://www.twitter.com/hadesbaker)
+- LinkedIn: [Taki Baker](https://www.linkedin.com/in/taki-baker-4a60851a5/)
+- Portfolio: [takibaker.netlify.app](https://takibaker.netlify.app)
+  
 <br/>
 <p align="center">
 <img src="./images/happy.svg" width="225" alt="NFT Happy">
@@ -7,11 +14,12 @@
 </p>
 <br/>
 
+# Table of Contents
 - [Foundry NFT](#foundry-nft)
+- [Table of Contents](#table-of-contents)
 - [Getting Started](#getting-started)
   - [Requirements](#requirements)
   - [Quickstart](#quickstart)
-    - [Optional Gitpod](#optional-gitpod)
 - [Usage](#usage)
   - [Start a local node](#start-a-local-node)
   - [Deploy](#deploy)
@@ -19,11 +27,9 @@
   - [Testing](#testing)
     - [Test Coverage](#test-coverage)
 - [Deployment to a testnet or mainnet](#deployment-to-a-testnet-or-mainnet)
-  - [Scripts](#scripts)
   - [Base64](#base64)
   - [Estimate gas](#estimate-gas)
 - [Formatting](#formatting)
-- [Thank you!](#thank-you)
 
 # Getting Started
 
@@ -37,7 +43,7 @@
 ## Quickstart
 
 ```
-git clone https://github.com/hadesbaker/foundry-erc721-dynamic
+git clone https://github.com/hadesbaker/foundry-erc721-dynamic.git
 cd foundry-erc721-dynamic
 make install
 forge build
