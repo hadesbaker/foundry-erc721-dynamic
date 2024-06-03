@@ -5,6 +5,12 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {Base64} from "@openzeppelin/contracts/utils/Base64.sol";
 
+/*
+ * @title A Dynamic ERC721 NFT
+ * @author Taki Baker Alyasri
+ * @notice This contract creates a dynamic OpenZeppelin ERC721 token
+ * @dev This NFT can be minted and flipped via the Interactions.s.sol script
+ */
 contract MoodNft is ERC721, Ownable {
     /// ERRORS ///
     error ERC721Metadata__URI_QueryFor_NonExistentToken();
